@@ -24,7 +24,14 @@
     <!-- 开启事务，可以通过transcational注解控制 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="keySerializer" ref="stringSerializer" />
+        <!--key进行序列化-->
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <!--value进行序列化,无此配置无法直接set对象-->
+        <property name="valueSerializer" >
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+        </property>
         <property name="enableTransactionSupport" value="true" />
     </bean>
 </beans>

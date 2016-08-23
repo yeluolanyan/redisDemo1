@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by MJN on 2016/8/17.
  */
-public interface UserDao {
+public interface UserDao  {
     boolean add(User user);
 
     boolean add(List<User> list);

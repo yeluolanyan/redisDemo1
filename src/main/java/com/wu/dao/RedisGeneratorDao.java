@@ -21,11 +21,15 @@ public class RedisGeneratorDao<K extends Serializable, V extends Serializable> {
         this.redisTemplate = redisTemplate;
     }
 
+    public RedisTemplate<K, V> getRedisTemplate() {
+        return redisTemplate;
+    }
+
     /**
      * 获取 RedisSerializer
-     * <br>------------------------------<br>
      */
-    protected RedisSerializer<String> getRedisSerializer() {
+    public RedisSerializer<String> getRedisSerializer() {
         return redisTemplate.getStringSerializer();
     }
+
 }

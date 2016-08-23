@@ -35,6 +35,7 @@ public class userController {
             User u = new User();
             u.setId("a"+i);
             u.setName("a--"+i);
+            u.setPassword("pass"+i);
             users.add(u);
         }
         return userService.testAddUsers1(users);
@@ -44,13 +45,15 @@ public class userController {
     @ResponseBody
     public String queryMember(@PathVariable("id")String id){
         User u = userService.testGetUser(id);
+        if(u == null){
+            return null;
+        }
         return u.getId()+" ::: "+u.getName();
     }
 
     @RequestMapping(value="/del/{id}",method={RequestMethod.GET})
     @ResponseBody
     public String deleteMmber(@PathVariable("id")String id){
-
         userService.testDelete(id);
         return "true";
     }
